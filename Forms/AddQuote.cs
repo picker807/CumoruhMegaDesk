@@ -21,6 +21,7 @@ namespace MegaDesk_Picker
 
         }
 
+       
         private void PopulateMaterialBox()
         {
             //Use the DesktopMaterial enum from Desk.cs file to populate

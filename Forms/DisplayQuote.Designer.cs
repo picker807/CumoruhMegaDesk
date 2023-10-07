@@ -46,12 +46,13 @@
             this.PriceLabel = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
+            this.SaveQuoteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(79, 33);
+            this.label1.Location = new System.Drawing.Point(12, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(653, 62);
             this.label1.TabIndex = 0;
@@ -227,7 +228,7 @@
             // 
             this.backButton.BackColor = System.Drawing.Color.BurlyWood;
             this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton.Location = new System.Drawing.Point(496, 41);
+            this.backButton.Location = new System.Drawing.Point(128, 782);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(265, 62);
             this.backButton.TabIndex = 21;
@@ -235,11 +236,24 @@
             this.backButton.UseVisualStyleBackColor = false;
             this.backButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // SaveQuoteButton
+            // 
+            this.SaveQuoteButton.BackColor = System.Drawing.Color.BurlyWood;
+            this.SaveQuoteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveQuoteButton.Location = new System.Drawing.Point(451, 782);
+            this.SaveQuoteButton.Name = "SaveQuoteButton";
+            this.SaveQuoteButton.Size = new System.Drawing.Size(262, 62);
+            this.SaveQuoteButton.TabIndex = 22;
+            this.SaveQuoteButton.Text = "Save Quote";
+            this.SaveQuoteButton.UseVisualStyleBackColor = false;
+            this.SaveQuoteButton.Click += new System.EventHandler(this.SaveQuote_Click);
+            // 
             // DisplayQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 809);
+            this.ClientSize = new System.Drawing.Size(939, 879);
+            this.Controls.Add(this.SaveQuoteButton);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.PriceLabel);
@@ -260,7 +274,7 @@
             this.Controls.Add(this.label1);
             this.Name = "DisplayQuote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DisplayQuote";
+            this.Text = "Cumoruh Mega Desk";
             this.ResumeLayout(false);
 
         }
@@ -285,5 +299,6 @@
         private System.Windows.Forms.Label PriceLabel;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button SaveQuoteButton;
     }
 }

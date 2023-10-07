@@ -4,19 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace MegaDesk_Picker
 {
-    internal class DeskQuote
+    public class DeskQuote
     {
+        [JsonProperty]
         internal Desk Desk;
+        [JsonProperty]
         internal string CustomerName;
+        [JsonProperty]
         internal DateTime Date { get; set; }
         private double BaseDeskPrice { get; set; }
         private double AdditionalSqInchCost { get; set; }
         private double DrawerCost { get; set; }
         private double SurfaceMaterialCost { get; set; }
         private double RushOrderCost {  get; set; }
+        [JsonProperty]
         internal double TotalPrice { get; set; }
 
         public DeskQuote(string customerName, int width, int depth, int numberOfDrawers, DesktopMaterial desktopMaterial, int rushOrderDays)
@@ -45,6 +50,7 @@ namespace MegaDesk_Picker
             SurfaceMaterialCost = CalcSurfaceMaterialCost();
             RushOrderCost = CalcRushOrderCost();
             TotalPrice = CalcTotalPrice();
+
 
            /* Console.WriteLine($"AdditionalSqInchCost = {AdditionalSqInchCost}, DrawerCost = {DrawerCost}, " +
                 $"SurfaceMaterialCost = {SurfaceMaterialCost}, RushOrderCost = {RushOrderCost}," +

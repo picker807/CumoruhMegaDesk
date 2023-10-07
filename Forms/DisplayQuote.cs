@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,6 +66,14 @@ namespace MegaDesk_Picker
             // Button returns to the AddQuote view where you can revise the order. 
             addQuote.Show();
             this.Close();
+        }
+
+        private void SaveQuote_Click(object sender, EventArgs e)
+        {
+            FileHandler fileHandler = new FileHandler();
+            fileHandler.SaveQuote(this.deskQuote);
+           // List<DeskQuote> quotes = new List<DeskQuote>();
+           // quotes = fileHandler.LoadQuotes();
         }
     }
 }

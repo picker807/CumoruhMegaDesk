@@ -1,64 +1,78 @@
-﻿// FileHelper.cs
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 
-public class FileHelper
+namespace MegaDesk_Picker
 {
-    private const string FilePath = "deskQuotes.json";
+public class FileHandler
+{
+    private const string filePath = "..\\..\\quotes.json";
 
-    public static void SaveQuote(DeskQuote quote)
-    {
-        try
+        public void SaveQuote(DeskQuote quote)
         {
-            string json = JsonConvert.SerializeObject(quote);
-
-            // Check if the file exists
-            if (!File.Exists(filePath))
+            try
             {
-                // Create the file if it doesn't exist
-                using (FileStream fs = File.Create(filePath))
+                List<DeskQuote> quotes;
+
+                if (File.Exists(filePath))
                 {
-                    // No need to write anything initially
+                    // Read the existing JSON content from the file
+                    string existingJson = File.ReadAllText(filePath);
+
+                    // Deserialize the JSON content into a list of DeskQuotes
+                    quotes = JsonConvert.DeserializeObject<List<DeskQuote>>(existingJson);
+                }
+                else
+                {
+                    // If the file doesn't exist, create an empty list
+                    quotes = new List<DeskQuote>();
+                }
+
+                // Add the new quote to the list
+                quotes.Add(quote);
+
+                // Serialize the updated list to JSON
+                string updatedJson = JsonConvert.SerializeObject(quotes);
+
+                // Write the updated JSON content back to the file
+                File.WriteAllText(filePath, updatedJson);
+
+                MessageBox.Show("Quote saved");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while saving quote: {ex.Message}");
+            }
+        }
+    
+
+        public List<DeskQuote> LoadQuotes()
+        {
+            List<DeskQuote> quotes = new List<DeskQuote>();
+
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    // Read the entire JSON content from the file
+                    string json = File.ReadAllText(filePath);
+
+                    // Deserialize the JSON into a list of DeskQuote objects
+                    quotes = JsonConvert.DeserializeObject<List<DeskQuote>>(json);
                 }
             }
-
-            using (StreamWriter writer = File.AppendText(FilePath))
+            catch (Exception ex)
             {
-                writer.WriteLine(json);
+                Console.WriteLine($"Error while loading quotes: {ex.Message}");
             }
+           // foreach (DeskQuote quote in quotes)
+           // {
+           //     MessageBox.Show(quote.CustomerName.ToString(), quote.TotalPrice.ToString());
+           // }
+            return quotes;
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error while saving quote: {ex.Message}");
-        }
-    }
-
-    public static List<DeskQuote> LoadQuotes()
-    {
-        List<DeskQuote> quotes = new List<DeskQuote>();
-
-        try
-        {
-            if (File.Exists(FilePath))
-            {
-                using (StreamReader reader = File.OpenText(FilePath))
-                {
-                    string json;
-                    while ((json = reader.ReadLine()) != null)
-                    {
-                        DeskQuote quote = JsonConvert.DeserializeObject<DeskQuote>(json);
-                        quotes.Add(quote);
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error while loading quotes: {ex.Message}");
-        }
-
-        return quotes;
     }
 }

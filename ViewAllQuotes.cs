@@ -55,7 +55,7 @@ namespace MegaDesk_Picker
                     allQuotesGrid.Rows.Add(
                         quote.CustomerName,
                         quote.Date.ToShortDateString(),
-                        quote.TotalPrice.ToString("C"),
+                        quote.TotalPrice.ToString("C0"),
                         $"{widthStr} in",
                         $"{depthStr} in",
                         numberOfDrawersStr,

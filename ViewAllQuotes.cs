@@ -31,10 +31,11 @@ namespace MegaDesk_Picker
                 allQuotesGrid.AutoGenerateColumns = false;
                 allQuotesGrid.RowHeadersVisible = false;
                 allQuotesGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
                 allQuotesGrid.RowsDefaultCellStyle.Font = new Font("Arial", 11, FontStyle.Regular);
                 allQuotesGrid.AlternatingRowsDefaultCellStyle.Font = new Font("Arial", 11, FontStyle.Regular);
-
-
+                allQuotesGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);
+                allQuotesGrid.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
 
                 foreach (var quote in quotes)
                 {
@@ -62,13 +63,9 @@ namespace MegaDesk_Picker
                         rushOrderDaysStr
                     );
                 }
-
+                // Resize columns to accomodate cell contents (min width) and fill the form.
                 allQuotesGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 allQuotesGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-
-                //allQuotesGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                //allQuotesGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             }
             catch (Exception ex)

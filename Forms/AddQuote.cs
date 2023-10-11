@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Schema;
 
 namespace MegaDesk_Picker
 {
@@ -21,11 +24,13 @@ namespace MegaDesk_Picker
 
         }
 
-       
+
         private void PopulateMaterialBox()
         {
+            List<DesktopMaterial> Materials = Enum.GetValues(typeof(DesktopMaterial)).Cast<DesktopMaterial>().ToList();
+
             //Use the DesktopMaterial enum from Desk.cs file to populate
-            foreach (DesktopMaterial material in Enum.GetValues(typeof(DesktopMaterial)))
+            foreach (DesktopMaterial material in Materials)
             {
                 materialComboBox.Items.Add(material.ToString());
             }

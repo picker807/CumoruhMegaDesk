@@ -49,10 +49,8 @@ public class FileHandler
         }
     
 
-        public List<DeskQuote> LoadQuotes()
+        public List<DeskQuote> LoadQuotes(ref List<DeskQuote> quotes)
         {
-            List<DeskQuote> quotes = new List<DeskQuote>();
-
             try
             {
                 if (File.Exists(filePath))
@@ -68,10 +66,7 @@ public class FileHandler
             {
                 Console.WriteLine($"Error while loading quotes: {ex.Message}");
             }
-           // foreach (DeskQuote quote in quotes)
-           // {
-           //     MessageBox.Show(quote.CustomerName.ToString(), quote.TotalPrice.ToString());
-           // }
+
             return quotes;
         }
     }

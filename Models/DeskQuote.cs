@@ -38,10 +38,6 @@ namespace MegaDesk_Picker
                             rushOrderDays);
 
             BaseDeskPrice = 200;
-           
-
-            
-
         }
 
         // Get all the costs and add them up
@@ -52,11 +48,6 @@ namespace MegaDesk_Picker
             SurfaceMaterialCost = CalcSurfaceMaterialCost();
             RushOrderCost = CalcRushOrderCost();
             TotalPrice = CalcTotalPrice();
-
-
-           /* Console.WriteLine($"AdditionalSqInchCost = {AdditionalSqInchCost}, DrawerCost = {DrawerCost}, " +
-                $"SurfaceMaterialCost = {SurfaceMaterialCost}, RushOrderCost = {RushOrderCost}," +
-                $" TotalCost = {TotalPrice}"); */
         }
 
         // Calculate the cost of adding more desk area
@@ -108,6 +99,7 @@ namespace MegaDesk_Picker
 
             // Find the index corresponding to sqInch is less than the value.
             int indexSize = Array.FindIndex(deskSizeHeader, header => sqInch < header);
+
             // Find the index that matches the value of rush days
             int indexRush = Array.IndexOf(rushOrderHeader, rush);
 
@@ -120,7 +112,7 @@ namespace MegaDesk_Picker
             }
 
             // Calculate the rush order cost using rushOrderPrices array
-            double rushOrderCost = rushOrderPrices[indexSize, indexRush];
+            double rushOrderCost = rushOrderPrices[indexRush, indexSize];
 
             return rushOrderCost;
         }

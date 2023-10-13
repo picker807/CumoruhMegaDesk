@@ -14,22 +14,15 @@ namespace MegaDesk_Picker
     public partial class MainMenu : Form
     {
         private AddQuote addQuoteView;
-        private ViewAllQuotes viewAllQuotesView;
-        private SearchQuotes searchQuotesView;
-        
+        private ViewAllQuotes viewAllQuotesView;        
 
 
         public MainMenu()
         {
             InitializeComponent();
             this.ControlBox = false;
-          
         }
 
-        private void MainMenu_Load(object sender, EventArgs e)
-        {
-
-        }
 
         // Navigate to the AddQuote view
         private void addQuoteButton_Click(object sender, EventArgs e)
@@ -44,6 +37,7 @@ namespace MegaDesk_Picker
 
         }
 
+
         // Navigate to the ViewAllQuotes view
         private void displayQuoteButton_Click(object sender, EventArgs e)
         {
@@ -57,18 +51,6 @@ namespace MegaDesk_Picker
  
         }
 
-        // Navigate to the SearchQuotes view
-        private void searchQuotesButton_Click(object sender, EventArgs e)
-        {
-            if (searchQuotesView == null)
-            {
-                searchQuotesView = new SearchQuotes(this);
-            }
-           
-            this.Hide();
-            searchQuotesView.Show();
-          
-        }
 
         // Close the app
         private void exitButton_Click(object sender, EventArgs e)

@@ -20,8 +20,6 @@ namespace MegaDesk_Picker
             PopulateMaterialBox();
             PopulateRushBox();
             PopulateDrawerBox();
-            
-
         }
 
 
@@ -91,50 +89,48 @@ namespace MegaDesk_Picker
                 DisplayQuote display = new DisplayQuote(quote, this);
                 display.Show();
                 this.Hide();
-
             }
-            
         }
 
         // Validate that the width is an integer and within min/ max values
-            private int ValidateWidth(string widthText)
-            {
-                int width;
-                int min = Desk.MinWidth;
-                int max = Desk.MaxWidth;
+        private int ValidateWidth(string widthText)
+        {
+            int width;
+            int min = Desk.MinWidth;
+            int max = Desk.MaxWidth;
 
-                try
+            try
+            {
+                if (int.TryParse(widthText, out width))
                 {
-                    if (int.TryParse(widthText, out width))
+                    if (width < min || width > max)
                     {
-                        if (width < min || width > max)
-                        {
-                            widthTextBox.BackColor = Color.Red;
-                            MessageBox.Show($"Width must be between {min} and {max}"); 
-                            widthTextBox.Focus(); 
-                            return -1; // Return an invalid value to indicate validation failure
-                        }
-                        else
-                        {
-                            // Reset any error indicators
-                            widthTextBox.BackColor = System.Drawing.SystemColors.Window; 
-                            return width; // Return valid width
-                        }
+                        widthTextBox.BackColor = Color.Red;
+                        MessageBox.Show($"Width must be between {min} and {max}"); 
+                        widthTextBox.Focus(); 
+                        return -1; // Return an invalid value to indicate validation failure
                     }
                     else
                     {
-                        widthTextBox.BackColor = Color.Red;
-                        MessageBox.Show("Width must be a valid number");
-                        widthTextBox.Focus();
-                        return -1; // Return an invalid value to indicate validation failure
+                        // Reset any error indicators
+                        widthTextBox.BackColor = System.Drawing.SystemColors.Window; 
+                        return width; // Return valid width
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("An error occurred during validation. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return -1;
+                    widthTextBox.BackColor = Color.Red;
+                    MessageBox.Show("Width must be a valid number");
+                    widthTextBox.Focus();
+                    return -1; // Return an invalid value to indicate validation failure
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred during validation. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
 
         // Validate teh depth is an integer and within min/ max values
         private int ValidateDepth(string depthText)
@@ -175,10 +171,5 @@ namespace MegaDesk_Picker
                 return -1;
             }
         }
-
-
-
-
-
     }
 }
